@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maafin Aku Ya? 🥺</title>
+    <style>
+        body {
+            background-color: #ffdae0; /* Pink lembut */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 400px;
+            z-index: 10;
+        }
+        h1 { color: #d63384; font-size: 24px; }
+        p { color: #555; }
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        button {
+            padding: 10px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        #btnYes { background-color: #ff4d6d; color: white; }
+        #btnNo { background-color: #ced4da; color: #333; position: relative; }
+        #message { margin-top: 20px; font-weight: bold; color: #ff4d6d; display: none; }
+        .emoji { font-size: 50px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="emoji" id="mainEmoji">🥺</div>
+        <h1 id="mainText">Kamu masih marah ya?</h1>
+        <p id="subText">Maafin aku ya sayang... janji deh gak bakal diulangin lagi! ❤️</p>
+        
+        <div class="buttons" id="buttonGroup">
+            <button id="btnYes" onclick="accepted()">iyaa sayangg</button>
+            <button id="btnNo" onmouseover="moveButton()">G</button>
+        </div>
+
+        <div id="message">YEAY! Makasih Sayang! I Love You More! 💖🌹</div>
+    </div>
+
+    <script>
+        function moveButton() {
+            const btnNo = document.getElementById('btnNo');
+            // Membuat tombol "Enggak" lari saat didekati kursor
+            const x = Math.random() * (window.innerWidth - btnNo.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btnNo.offsetHeight);
+            
+            btnNo.style.position = "absolute";
+            btnNo.style.left = x + "px";
+            btnNo.style.top = y + "px";
+        }
+
+        function accepted() {
+            document.getElementById('mainEmoji').innerHTML = "🥰";
+            document.getElementById('mainText').innerHTML = "Makasih Sayangg";
+            document.getElementById('subText').style.display = "none";
+            document.getElementById('buttonGroup').style.display = "none";
+            document.getElementById('message').style.display = "block";
+            
+            // Tambahkan efek konfeti sederhana
+            for(let i=0; i<50; i++) {
+                createHeart();
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            heart.style.opacity = Math.random();
+            heart.style.transform = `rotate(${Math.random() * 360}deg)`;
+            heart.style.transition = '2s linear';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.style.top = '-10vh';
+                heart.style.opacity = '0';
+            }, 100);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
